@@ -1,0 +1,18 @@
+module Main where
+
+class ShowSimple a where
+    showSimple :: a -> String
+
+data PaymentMethod = Cash | CreditCard | MobileMoney
+    deriving (Eq)
+
+instance ShowSimple PaymentMethod where
+    showSimple Cash = "Cash"
+    showSimple CreditCard = "Credit Card"
+    showSimple MobileMoney = "Mobile Money"
+
+main :: IO ()
+main = do
+    putStrLn (showSimple Cash)
+    putStrLn (showSimple CreditCard)
+    putStrLn (showSimple MobileMoney)
