@@ -1,0 +1,12 @@
+module Main where
+
+import Data.List (foldl')
+
+class Summable a where
+    sumUp :: [a] -> a
+
+instance Summable Int where
+    sumUp = foldl' (+) 0
+
+main :: IO ()
+main = print (sumUp ([1,2,3,4,50] :: [Int]))
