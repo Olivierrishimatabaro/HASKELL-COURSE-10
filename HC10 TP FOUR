@@ -1,0 +1,22 @@
+-- fichier : Main.hs
+module Main where
+
+-- Définition du type paramétrique Box
+data Box a = Box a
+  deriving (Show)
+
+-- Définition manuelle de l'instance Eq
+instance Eq a => Eq (Box a) where
+  (Box x) == (Box y) = x == y
+
+-- Exemple d'utilisation
+main :: IO ()
+main = do
+  let b1 = Box 5
+      b2 = Box 5
+      b3 = Box 10
+      b4 = Box "hello"
+      b5 = Box "world"
+  print (b1 == b2)  -- True
+  print (b1 == b3)  -- False
+  print (b4 == b5)  -- False
