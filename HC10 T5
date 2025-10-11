@@ -1,0 +1,8 @@
+infiniteNumbers :: [Int]
+infiniteNumbers = [1..]
+
+firstN :: Int -> [Int]
+firstN n = take n infiniteNumbers
+
+main :: IO ()
+main = print (firstN 50)
