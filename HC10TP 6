@@ -1,0 +1,37 @@
+-- HC10T6 - Récursivité mutuelle dans Eq pour Blockchain
+
+data Block = Block { index :: Int, payload :: String }
+  deriving (Show)
+
+instance Eq Block where
+  (==) (Block i1 p1) (Block i2 p2) = i1 == i2 && p1 == p2
+  (/=) b1 b2 = not (b1 == b2)
+
+newtype Blockchain = Blockchain [Block]
+  deriving (Show)
+
+instance Eq Blockchain where
+  (==) (Blockchain []) (Blockchain []) = True
+  (==) (Blockchain (b1:bs1)) (Blockchain (b2:bs2)) =
+    b1 == b2 && (Blockchain bs1 /= Blockchain bs2)
+  (==) _ _ = False
+
+  (/=) (Blockchain []) (Blockchain []) = False
+  (/=) (Blockchain (b1:bs1)) (Blockchain (b2:bs2)) =
+    b1 /= b2 || (Blockchain bs1 == Blockchain bs2)
+  (/=) _ _ = True
+
+main :: IO ()
+main = do
+  let b1 = Block 1 "Genesis"
+      b2 = Block 2 "Tx1"
+      b3 = Block 3 "Tx2"
+
+      chainA = Blockchain [b1, b2, b3]
+      chainB = Blockchain [b1, b2, b3]
+      chainC = Blockchain [b1, b3]
+
+  print (chainA == chainB)
+  print (chainA /= chainB)
+  print (chainA == chainC)
+  print (chainA /= chainC)
