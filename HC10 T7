@@ -1,0 +1,9 @@
+fToC :: Float -> Float
+fToC f = (f - 32) * 5 / 9
+
+main :: IO ()
+main = do
+    putStrLn "Conversion Fahrenheit -> Celsius"
+    print (fToC 32)   -- devrait afficher 0.0
+    print (fToC 212)  -- devrait afficher 100.0
+    print (fToC 77)   -- ≈ 25.0
