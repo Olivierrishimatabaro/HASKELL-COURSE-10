@@ -1,0 +1,9 @@
+applyTwice :: (a -> a) -> a -> a
+applyTwice f x = f (f x)
+
+main :: IO ()
+main = do
+    putStrLn "=== Test de applyTwice ==="
+    print (applyTwice (+10) 10)     -- (10 + 10) + 6 = 26
+    print (applyTwice (*2) 5)      -- (5 * 5) * 2 = 50
+    print (applyTwice reverse "abc") -- reverse(reverse "abc") = "abc"
